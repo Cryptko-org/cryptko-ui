@@ -11,6 +11,7 @@ import {
   WalletData,
 } from '../interfaces';
 import { EnvironmentService } from './environment.service';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * This service was created for work with bnb on BSC Mainnet/Testnet chain
@@ -35,13 +36,17 @@ export class MetamaskService {
     isActiveChainIdCorrect: false,
   };
 
-  constructor(private environmentService: EnvironmentService) {
+  constructor(
+    private environmentService: EnvironmentService,
+    private toastrService: ToastrService
+  ) {
     const MMSDK: MetaMaskSDK = new MetaMaskSDK();
     this.metamask = MMSDK.getProvider();
 
     this.isWalletConnected().then(() => {
       this.initWalletData()
         .then(() => {
+          this.toastrService.success("Гаманець успішно під'єднано!");
           console.log('Wallet data has been inited successfully!');
         })
         .catch((err) => {
@@ -99,13 +104,16 @@ export class MetamaskService {
     return this.metamask
       .request({ method: METAMASK_METHODS.ETH_REQUEST_ACCOUNTS })
       .then(() => {
+        this.toastrService.success("Гаманець успішно під'єднано!");
         console.log('Wallet connected successfully!');
         return true;
       })
       .catch((err) => {
         if (err.code === 4001) {
+          this.toastrService.error("Гаманець не під'єднано =(");
           console.log('You reject operation!');
         } else {
+          this.toastrService.error('Щось пішло не так при підключені гаманця =(');
           console.log('Something went wrong while connect wallet!:', err.message);
         }
 
@@ -117,6 +125,7 @@ export class MetamaskService {
     return this.switchChainRequest(chainId)
       .then(() => {
         this.activeChainId = chainId;
+        this.toastrService.success('Чейн успішно змінено!');
         console.log('Active chain switched! Current active chain:', this.activeChainId);
         return chainId;
       })
@@ -133,6 +142,7 @@ export class MetamaskService {
         }
 
         if (err.code === 4001) {
+          this.toastrService.error('Чейн не змінено, ви відхилили операцію =(');
           console.log('You reject operation!');
         } else {
           console.log('Something went wrong while changing chain! Error: ', err.message);
@@ -168,11 +178,13 @@ export class MetamaskService {
   private async initWalletData(): Promise<void> {
     this.walletData.isMetamask = await this.detectMetamaskWallet();
     if (!this.walletData.isMetamask) {
+      this.toastrService.info('Будь ласка, завантажте метамаск!');
       throw Error('Please, download a metamask!');
     }
 
     this.walletData.isWalletConnected = await this.isWalletConnected();
     if (!this.walletData.isWalletConnected) {
+      this.toastrService.info('Будь ласка, підключіть метамаск!');
       throw Error('Please, connect/install metamask and refresh page!');
     }
 
@@ -223,6 +235,7 @@ export class MetamaskService {
       blockExplorerUrls
     )
       .then(() => {
+        this.toastrService.success('Необхідний чейн успішно додано!');
         console.log('Chain has been added successfully!');
         this.walletData.isHaveRequiredChain = true;
 
@@ -232,8 +245,10 @@ export class MetamaskService {
         this.walletData.isHaveRequiredChain = false;
 
         if (err.code === 4001) {
+          this.toastrService.error('Ви відхилили операцію додавання необхідного чейну =(');
           console.log('You reject operation!');
         } else {
+          this.toastrService.error('Щось пішло не так під час додавання необхідного чейну =(');
           console.log('Something went wrong while adding chain! Error: ', err.message);
         }
 
@@ -350,6 +365,7 @@ export class MetamaskService {
 
   private addMetamaskEventListeners() {
     this.metamask.on(METAMASK_LISTENERS.ACCOUNTS_CHANGED, async (walletAddresses: string[]) => {
+      this.toastrService.info('Ваш гаманець змінено!');
       console.log(`[METAMASK_EVENT] ${METAMASK_LISTENERS.ACCOUNTS_CHANGED}:`, walletAddresses);
       await this.initWalletData();
     });

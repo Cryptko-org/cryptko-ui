@@ -22,6 +22,8 @@ import { ProductPageComponent } from './shared/pages/product-page/product-page.c
 import { BuyProductModalComponent } from './shared/modals/buy-product-modal/buy-product-modal.component';
 import { ClickOutsideDirective } from './core/directives/click-outside.directive';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TOAST_CONFIG, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,10 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     NgxPaginationModule,
     NgxSmartModalModule.forRoot(),
     NgSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
   bootstrap: [AppComponent],

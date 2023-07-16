@@ -301,3 +301,10 @@ export interface SortOption {
   value: string;
   isSelected: boolean;
 }
+
+export interface CustomerInfo {
+  fullName: string;
+  phoneNumber: string;
+  deliveryCityRef: string;
+  deliveryWarehouse: string;
+}

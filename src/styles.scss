@@ -4,6 +4,7 @@
 @import "app/app.component";
 @import "src/app/shared/mixins";
 @import "src/assets/icons/style.css";
+@import 'ngx-toastr/toastr';
 
 :root {
   --text-color: #FFFFFF;
@@ -179,6 +180,9 @@ app-root {
 
 /*** NG-SELECT **/
 
+.ngx-toastr {
+  font-size: 1.6rem;
+}
 
 //.ngx-pagination {
 //  .pagination {

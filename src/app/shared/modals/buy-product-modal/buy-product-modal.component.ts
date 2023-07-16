@@ -5,7 +5,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { NovaPoshtaService } from '../../../core/services/nova-poshta.service';
 import { MarketService } from '../../../core/services/market.service';
-import { ButtonData, CityInfo, Department } from '../../../core/interfaces';
+import { ButtonData, CityInfo, CustomerInfo, Department } from '../../../core/interfaces';
 import { BUTTON_SIZES, BUTTON_TYPES, MODAL_IDS } from '../../../core/enums';
 import { MetamaskService } from '../../../core/services/metamask.service';
 
@@ -88,7 +88,16 @@ export class BuyProductModalComponent implements OnDestroy {
     const { productId, productPriceBnb } = this.ngxSmartModalService.getModalData(
       MODAL_IDS.BUY_PRODUCT
     );
-    this.marketService.buyProduct(productId, productPriceBnb);
+
+    const { fullName, phoneNumber, deliveryWarehouseId } = this.buyForm.value;
+    const customerData: CustomerInfo = {
+      fullName,
+      phoneNumber,
+      deliveryCityRef: this.novaPoshtaService.deliveryCityRef,
+      deliveryWarehouse: deliveryWarehouseId.split('/')[1],
+    };
+
+    this.marketService.buyProduct(productId, productPriceBnb, customerData);
   }
 
   /**
