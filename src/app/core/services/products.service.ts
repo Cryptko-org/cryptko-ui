@@ -49,7 +49,11 @@ export class ProductsService {
     ws.onmessage = (event) => {
       if (JSON.parse(event.data) === 'UPDATE_PRODUCTS') {
         if (this.router.url.includes('product')) {
-          this.getProductById(this.activeProductPageData.id);
+          this.getProductById(this.activeProductPageData.id).subscribe({
+            next: (response: Response<ProductResponse>) => {
+              this.activeProductPageData = response.data.product;
+            },
+          });
         } else {
           this.updateProducts();
         }
