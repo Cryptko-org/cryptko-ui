@@ -1,0 +1,49 @@
+<div class='products'>
+  <div class='products-content' *ngIf='(productsService.products$ | async).length > 0; else emptyBlock'>
+    <div class='products-content__list'>
+      <div class='products-content__list-item product' *ngFor='let product of (productsService.products$ | async) | paginate:productsService.pagination'>
+        <div class='product-content'>
+          <div class='product-content__image'>
+            <img [src]='product.smallImageLink' class='product-content__image-img' alt='product'>
+            <div class='product-content__image-label label right-top'>
+              <div class='label-content red'>
+                <span class='label-content__text red-text'>{{product.priceBnb}}</span>
+                <span class='icon icon-bnb-icon'></span>
+              </div>
+            </div>
+            <div class='product-content__image-label label left-bottom'>
+              <div class='label-content yellow'>
+                <span class='label-content__text yellow-text'>{{product.countStars}}</span>
+                <span class='icon icon-star'></span>
+              </div>
+            </div>
+          </div>
+          <div class='product-content__text'>
+            <div class='product-content__text-name'>{{product.title}}</div>
+          </div>
+          <div class='product-content__button'>
+            <app-button [routerLink]='"product/" + product.id' [buttonData]='reviewButton'></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='products-content__pagination pagination'>
+      <pagination-controls
+        [previousLabel]='""'
+        [nextLabel]='""'
+        [autoHide]='true'
+        (pageChange)="onPageChange($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyBlock>
+  <div class='empty'>
+    <div class='empty-content'>
+      <div class='empty-content__title'>
+        <span class='empty-content__title-text'>Нажаль товарів немає =(</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

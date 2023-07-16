@@ -1,0 +1,55 @@
+<div class='product' *ngIf='productsService.activeProductPageData'>
+  <div class='product-wrapper'>
+    <div class='product-content'>
+      <div class='product-content__image'>
+        <img [src]='productsService.activeProductPageData.largeImageLink' alt='product' class='product-content__image-img'>
+      </div>
+      <div class='product-content__info info'>
+        <div class='info-content'>
+          <div class='info-top'>
+            <div class='info-content__title'>
+              <span class='info-content__title-text'>{{productsService.activeProductPageData.title}}</span>
+            </div>
+            <div class='info-content__price'>
+              <span class='info-content__price-text'>{{productsService.activeProductPageData.priceBnb}}</span>
+              <span class='icon icon-bnb-icon'></span>
+            </div>
+            <div class='info-content__description'>
+              <p class='info-content__description-text'>
+                Apple є однією з провідних компаній у сфері технологій, відомою своїми інноваційними продуктами,
+                зокрема лінією смартфонів iPhone. iPhone - це серія мобільних пристроїв, розроблених і випущених
+                Apple. Від першого випуску в 2007 році, iPhone отримав значну популярність завдяки своєму унікальному
+                поєднанню стильного дизайну, високоякісної побудови та потужних функцій.
+              <p class='info-content__description-text'>
+                Дизайн iPhone відзначається мінімалістичним підходом та використанням високоякісних матеріалів, таких
+              як скло і алюміній або нержавіюча сталь. Кожен новий покоління iPhone пропонує покращений дизайн, тонкий
+              корпус і безрамковий екран, що сприяє зручному використанню пристрою.
+              </p>
+              <p class='info-content__description-text'>
+                Загалом, iPhone - це сучасна технологічна платформа, яка пропонує високу якість дизайну, продуктивність,
+                камеру, безпеку та широкий функціонал.
+              </p>
+            </div>
+          </div>
+          <div class='info-bottom'>
+            <ng-container *ngIf='metamaskService.walletData.isWalletConnected; else connectWalletBlock'>
+              <ng-container *ngIf='metamaskService.walletData.isActiveChainIdCorrect; else changeChainBlock'>
+                <div class='info-content__button'>
+                  <app-button (click)='buyProduct()' [buttonData]='buyButton'></app-button>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-template #connectWalletBlock>
+              <app-button (click)='connectWallet()' [buttonData]='connectWalletButton'></app-button>
+            </ng-template>
+            <ng-template #changeChainBlock>
+              <app-button (click)='switchChain()' [buttonData]='switchChainButton'></app-button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-buy-product-modal></app-buy-product-modal>

@@ -1,0 +1,54 @@
+@import "src/app/shared/mixins";
+
+.header {
+  background: var(--header-background);
+
+  &-wrapper {
+    @include wrapper;
+    padding: 20px;
+  }
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo {
+      // DISABLE SELECT
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+
+      cursor: pointer;
+
+      &-text {
+        font-size: 3.2rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.wallet {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__address,
+    &__balance {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+
+      &-text {
+        font-size: 1.6rem;
+      }
+    }
+
+    .icon {
+      font-size: 1.9rem;
+    }
+  }
+}

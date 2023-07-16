@@ -1,0 +1,76 @@
+<ngx-smart-modal identifier='buyProductModal' #buyProductModal>
+  <div class='modal'>
+    <div class='modal-content'>
+      <form [formGroup]='buyForm' class='modal-content__form form'>
+        <div class='form-top'>
+          <label class='form-content__label label'>
+            <span class='label-name'>Повне ім’я:</span>
+            <input [formControlName]="'fullName'" [placeholder]="'ПІБ'" class='label-input' type='text' />
+            <span
+              *ngIf="buyForm.controls['fullName'].errors?.['required'] && buyForm.controls['fullName'].touched"
+              class='validation-error'>Поле обов'язкове</span>
+          </label>
+          <label class='form-content__label label'>
+            <span class='label-name'>Номер телефону:</span>
+            <input [formControlName]="'phoneNumber'" [placeholder]="'Номер телефону'" class='label-input' type='tel' />
+            <span
+              *ngIf="buyForm.controls['phoneNumber'].errors?.['required'] && buyForm.controls['phoneNumber'].touched"
+              class='validation-error'>Поле обов'язкове</span>
+          </label>
+          <label class='form-content__label label'>
+            <span class='label-name'>Введіть населений пункт України:</span>
+            <ng-select
+              (close)='getDeliveryAddresses($event)'
+              (search)='getDeliveryAddresses($event)'
+              [formControlName]="'deliveryZIP'"
+              [placeholder]="'Населений пункт'"
+            >
+              <ng-option
+                *ngFor='let deliveryAddress of deliveryAddresses'
+                [value]='deliveryAddress.Index1'
+              >
+                {{deliveryAddress.SettlementTypeDescription}} {{deliveryAddress.Description}}
+                {{deliveryAddress.RegionsDescription ? '(' + deliveryAddress.RegionsDescription + ')' : ''}}
+              </ng-option>
+            </ng-select>
+            <span
+              *ngIf="buyForm.controls['deliveryZIP'].errors?.['required'] && buyForm.controls['deliveryZIP'].touched"
+              class='validation-error'>Поле обов'язкове</span>
+          </label>
+          <label class='form-content__label label'>
+            <span class='label-name'>Оберіть зручне відділення:</span>
+            <ng-select [formControlName]="'deliveryWarehouseId'" [placeholder]="'Відділення'">
+              <ng-option
+                *ngFor='let deliveryDepartment of deliveryDepartments'
+                [value]='deliveryDepartment.WarehouseIndex'
+              >
+                {{deliveryDepartment.Description}}
+              </ng-option>
+            </ng-select>
+            <span
+              *ngIf="buyForm.controls['deliveryWarehouseId'].errors?.['required'] && buyForm.controls['deliveryWarehouseId'].touched"
+              class='validation-error'>Поле обов'язкове</span>
+          </label>
+        </div>
+        <div class="form-bottom">
+          <ng-container *ngIf='metamaskService.walletData.isWalletConnected; else connectWalletBlock'>
+            <ng-container *ngIf='metamaskService.walletData.isActiveChainIdCorrect; else changeChainBlock'>
+              <app-button
+                (click)='buyProduct()'
+                [attr.aria-disabled]='buyForm.invalid'
+                [disabled]='buyForm.invalid'
+                [buttonData]='buttonData'
+              ></app-button>
+            </ng-container>
+          </ng-container>
+          <ng-template #connectWalletBlock>
+            <app-button (click)='connectWallet()' [buttonData]='connectWalletButton'></app-button>
+          </ng-template>
+          <ng-template #changeChainBlock>
+            <app-button (click)='switchChain()' [buttonData]='switchChainButton'></app-button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</ngx-smart-modal>

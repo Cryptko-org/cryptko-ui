@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import "@ng-select/ng-select/themes/default.theme.css";
+@import "ngx-smart-modal/ngx-smart-modal";
+@import "app/app.component";
+@import "src/app/shared/mixins";
+@import "src/assets/icons/style.css";
+
+:root {
+  --text-color: #FFFFFF;
+  --price-color: #CF0000;
+  --start-color: #FFEE00;
+  --telegram-color: #37BBFE;
+  --validation-error-color: #FF2121;
+
+  --main-background: #333333;
+  --modal-background: #171717;
+  --header-background: #222222;
+  --gray-button-background: #333333;
+  --red-button-background: #AD4343;
+  --black-button-hover-background: #555555;
+  --gray-button-hover-background: #777777;
+  --red-button-hover-background: #A43535;
+  --filter-background: #1A1A1A;
+  --filter-option-background: #282828;
+  --sort-background: #1A1A1A;
+  --sort-option-background: #282828;
+  --sort-active-option-background: #424242;
+  --product-card-background: #1D1D1D;
+  --product-price-background: #331C1C;
+  --product-start-background: #4f4a07;
+  --footer-background: #222222;
+  --input-background: #242424;
+  --hover-select-background: #414141;
+
+  --black-button-border: #555555;
+  --black-border-color: #000000;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--main-background);
+  color: var(--text-color);
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.icon {
+  color: var(--text-color);
+}
+
+/** Footer bottom */
+html,
+body,
+app-root {
+  height: 100%;
+}
+
+app-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .container {
+    flex: 0 1 100%;
+  }
+
+  .lds-dual-ring {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+/** Footer bottom */
+
+/*** NGX-SMART-MODAL **/
+.nsm-content {
+  font-size: 1.6rem !important;
+  background-color: var(--modal-background);
+  padding: 30px;
+}
+
+.nsm-dialog-btn-close {
+  color: var(--text-color);
+}
+
+/*** NGX-SMART-MODAL **/
+
+/*** NG-SELECT **/
+.ng-select-container,
+.ng-option {
+  background-color: var(--input-background) !important;
+  border-radius: 0 !important;
+}
+
+.ng-select-container {
+  cursor: text !important;
+}
+
+.ng-input {
+  top: 50% !important;
+  transform: translateY(-50%);
+
+  input {
+    cursor: text !important;
+    color: var(--text-color) !important;
+  }
+}
+
+.ng-value-label,
+.ng-option-label {
+  color: var(--text-color);
+}
+
+.ng-option-marked {
+  background-color: var(--hover-select-background) !important;
+}
+
+.ng-select-container,
+.ng-dropdown-panel.ng-select-bottom {
+  border-color: var(--black-border-color) !important;
+}
+
+.ng-option {
+  position: relative;
+}
+
+.ng-option-disabled::before {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  content: "";
+  //background-image: url("./assets/icons/lock-icon.png");
+  background-size: 15px 15px;
+  width: 15px;
+  height: 15px;
+}
+
+/*** NG-SELECT **/
+
+
+//.ngx-pagination {
+//  .pagination {
+//    &-previous {
+//      background-color: var();
+//    }
+//
+//    &-next {
+//
+//    }
+//  }
+//
+//  .current {
+//  }
+//
+//  li {
+//    a {
+//      span {
+//        color: var(--text-color);
+//      }
+//    }
+//  }
+//}

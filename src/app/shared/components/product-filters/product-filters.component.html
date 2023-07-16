@@ -1,0 +1,17 @@
+<div class='filters'>
+  <app-filter
+    [title]='"Модель"'
+    [filters]='productsService.filters.model$ | async'
+    (filtersChange)='changeFilters(productFilters.MODEL, $event)'
+  ></app-filter>
+  <app-filter
+    [title]='"Пам`ять"'
+    [filters]='productsService.filters.memory$ | async'
+    (filtersChange)='changeFilters(productFilters.MEMORY, $event)'
+  ></app-filter>
+  <app-filter
+    [title]='"Стан"'
+    [filters]='productsService.filters.status$ | async'
+    (filtersChange)='changeFilters(productFilters.STATUS, $event)'
+  ></app-filter>
+</div>

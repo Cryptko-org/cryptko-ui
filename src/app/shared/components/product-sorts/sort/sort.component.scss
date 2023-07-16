@@ -1,0 +1,64 @@
+.sort {
+  position: relative;
+  display: inline-block;
+  z-index: 99999;
+
+  &-content {
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 13px 20px;
+      width: 250px;
+      background-color: var(--sort-background);
+      cursor: pointer;
+
+      &-text {
+        color: var(--text-color);
+        font-size: 1.6rem;
+      }
+
+      .icon {
+        &.active {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__options {
+      position: absolute;
+      text-align: left;
+
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      background-color: var(--sort-option-background);
+
+      &-option {
+      }
+    }
+  }
+}
+
+.option {
+  display: inline-block;
+  padding: 4px 20px;
+  width: 250px;
+  cursor: pointer;
+
+  &.active {
+    background-color: var(--sort-active-option-background);
+  }
+
+  &-content {
+    &__name {
+      &-text {
+        color: var(--text-color);
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

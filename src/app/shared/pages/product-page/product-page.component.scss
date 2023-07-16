@@ -1,0 +1,88 @@
+@import "src/app/shared/mixins";
+
+.product {
+  padding-top: 60px;
+
+  &-wrapper {
+    @include wrapper;
+  }
+
+  &-content {
+    display: flex;
+    gap: 40px;
+
+    &__image {
+      flex: 0 1 50%;
+
+      &-img {
+        width: 100%;
+
+      }
+    }
+
+    &__info {
+      flex: 0 1 50%;
+    }
+  }
+}
+
+.info {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 20px;
+
+    &__title {
+      padding-bottom: 10px;
+
+      &-text {
+        color: var(--text-color);
+        font-size: 2.4rem;
+        font-weight: 700;
+      }
+    }
+
+    &__price {
+      display: flex;
+      gap: 10px;
+      padding-bottom: 30px;
+
+      &-text,
+      .icon {
+        color: var(--text-color);
+        font-size: 2rem;
+      }
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      &-text {
+        color: var(--text-color);
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+.info {
+  &-top {
+    flex: 0 1 100%;
+  }
+
+  &-bottom {
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .product {
+    &-content {
+      flex-direction: column;
+    }
+  }
+}

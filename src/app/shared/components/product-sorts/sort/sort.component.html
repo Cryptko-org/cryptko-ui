@@ -1,0 +1,21 @@
+<div class='sort' (clickOutside)='closePopover()'>
+  <div class='sort-content'>
+    <div class='sort-content__title' (click)='handlePopoverOpen()'>
+      <span class='sort-content__title-text'>{{title}}</span>
+      <span class='icon icon-dropdown-arrow' [ngClass]='[isOpen ? "active" : ""]'></span>
+    </div>
+    <ul *ngIf='isOpen' class='sort-content__options'>
+      <li *ngFor='let option of options'
+          [ngClass]='[option.isSelected ? "active" : ""]'
+          (click)='selectOption(option.value)'
+          class='sort-content__options-option option'
+      >
+        <div class='option-content'>
+          <div class='option-content__name'>
+            <span class='option-content__name-text'>{{option.name}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

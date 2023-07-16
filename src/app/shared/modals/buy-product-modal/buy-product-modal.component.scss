@@ -1,0 +1,44 @@
+@import "src/app/shared/mixins";
+
+.modal {
+  &-content {
+    &__form {
+    }
+
+    &__label {
+    }
+  }
+}
+
+.form {
+  &-content {
+    &__label {
+      display: block;
+
+      &:not(:last-child) {
+        padding-bottom: 7px;
+      }
+    }
+  }
+  &-top {
+    padding-bottom: 15px;
+  }
+}
+
+.label {
+  &-name {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding-bottom: 3px;
+  }
+
+  &-input {
+    @include input-field;
+  }
+}
+
+.validation-error {
+  font-size: 1.2rem;
+  color: var(--validation-error-color);
+}
+

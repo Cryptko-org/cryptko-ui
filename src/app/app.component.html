@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+
+
+<ng-container *ngIf="loadingService.isLoading$ | async">
+  <div class="lds-dual-ring"></div>
+</ng-container>

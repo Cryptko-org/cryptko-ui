@@ -1,0 +1,41 @@
+@import "src/app/shared/mixins";
+
+.main {
+  padding-bottom: 100px;
+  &-content {
+    &__banner {
+      padding-bottom: 60px;
+    }
+
+    &__market {
+    }
+  }
+}
+
+.banner {
+}
+
+.market {
+  &-wrapper {
+    @include wrapper;
+  }
+
+  &-sort {
+    padding-bottom: 20px;
+    text-align: right;
+  }
+
+  &-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    &__filters {
+      flex: 0 1 25%;
+    }
+
+    &__products {
+      flex: 0 1 75%;
+    }
+  }
+}

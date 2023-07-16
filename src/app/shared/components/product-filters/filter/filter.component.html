@@ -1,0 +1,20 @@
+<div class='filters'>
+  <div class='filters-content'>
+    <div class='filters-content__title' (click)='toggleCollapsed()'>
+      <div class='filters-content__title-text'>{{title}}</div>
+      <span class='icon icon-dropdown-arrow' [ngClass]='[
+        isCollapsed ? "" : "active"
+      ]'></span>
+    </div>
+    <ul *ngIf='!isCollapsed' class='filters-content__options'>
+      <li *ngFor='let filter of filters' class='filters-content__options-item option'>
+        <div class='option-content' (click)='handleSelect(filter.value)'>
+          <input class='option-content__checkbox' type="checkbox" [(ngModel)]='filter.isChecked'>
+          <div class='option-content__name'>
+            <span class='option-content__name-text'>{{filter.name}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

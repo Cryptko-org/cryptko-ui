@@ -1,0 +1,39 @@
+<header class='header'>
+  <div class='header-wrapper'>
+    <div class='header-content'>
+      <a [routerLink]='""' class='header-content__logo'>
+        <h2 class='header-content__logo-text'>CRYPTKO</h2>
+      </a>
+      <div class='header-content__wallet wallet'>
+        <div class='wallet-content'>
+          <ng-container *ngIf='metamaskService.walletData.isWalletConnected; else connectWalletBlock'>
+<!--            <ng-container *ngIf='(cartService.orders$ | async).length > 0'>-->
+<!--              <span [routerLink]='"shop-history"' class='icon icon-shop-history'></span>-->
+<!--            </ng-container>-->
+
+            <ng-container *ngIf='metamaskService.walletData.isActiveChainIdCorrect; else changeChainBlock'>
+              <div class='wallet-content__address'>
+                <span class='wallet-content__address-text'>
+                  {{metamaskService.walletAddress | slice:0: 4}}...{{metamaskService.walletAddress | slice:-4}}
+                </span>
+                <span class='icon icon-wallet'></span>
+              </div>
+              <div class='wallet-content__balance'>
+                <span class='wallet-content__balance-text'>
+                  {{metamaskService.walletData.balance | number:'1.3-5'}}
+                </span>
+                <span class='icon icon-bnb-icon'></span>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-template #connectWalletBlock>
+            <app-button (click)='connectWallet()' [buttonData]='connectWalletButton'></app-button>
+          </ng-template>
+          <ng-template #changeChainBlock>
+            <app-button (click)='switchChain()' [buttonData]='switchChainButton'></app-button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

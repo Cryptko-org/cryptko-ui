@@ -1,0 +1,7 @@
+<div class='sorts'>
+  <app-sort
+    [title]='"Сортування"'
+    [options]='productsService.sort$ | async'
+    (optionsChange)='onOptionChange($event)'
+  ></app-sort>
+</div>

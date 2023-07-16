@@ -1,0 +1,66 @@
+@import "src/app/shared/mixins";
+
+.banner {
+  background: url("~src/assets/images/banner-background.png") 50% / 100% 100% no-repeat;
+  background-size: cover;
+  width: 100%;
+
+  &-wrapper {
+    @include wrapper;
+    position: relative;
+  }
+
+  &-content {
+    display: flex;
+    height: 680px;
+
+    &__text {
+      &-img {
+        position: absolute;
+        top: 25%;
+      }
+    }
+
+    &__image {
+      &-img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .banner {
+    &-wrapper {
+      @include wrapper;
+      position: relative;
+    }
+
+    &-content {
+      display: flex;
+      height: 900px;
+
+      &__text {
+        &-img {
+          width: 100%;
+          max-width: 596px;
+          top: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      &__image {
+        &-img {
+          width: 100%;
+          max-width: 555px;
+          right: inherit;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}

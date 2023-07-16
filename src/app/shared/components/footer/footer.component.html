@@ -1,0 +1,18 @@
+<div class='footer'>
+  <div class='footer-wrapper'>
+    <div class='footer-content'>
+      <div class='footer-content__title'>
+        <a [routerLink]='""' class='footer-content__title-text'>CRYPTKO</a>
+      </div>
+      <ul class='footer-content__socials socials'>
+        <li *ngFor='let social of socials' class='socials-item social'>
+          <div class='social-content'>
+            <a [href]='social.link' [target]='"_blank"' class='social-content__link'>
+              <span class='icon' [ngClass]='[social.iconClass]'></span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

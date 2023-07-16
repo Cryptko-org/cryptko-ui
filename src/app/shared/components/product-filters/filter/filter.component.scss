@@ -1,0 +1,56 @@
+.filters {
+  &-content {
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 12px 15px;
+      background-color: var(--filter-background);
+
+      cursor: pointer;
+
+      &-text {
+        font-size: 1.6rem;
+      }
+
+      .icon-dropdown-arrow {
+        &.active {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__options {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background-color: var(--filter-option-background);
+      padding: 12px 16px;
+    }
+  }
+}
+
+.option {
+  // DISABLE SELECT
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+  &-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 3px 0;
+
+    &__checkbox {
+      cursor: pointer;
+    }
+    &__name {
+      &-text {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
