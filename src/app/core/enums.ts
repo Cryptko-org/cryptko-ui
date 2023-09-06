@@ -105,8 +105,6 @@ export enum PHONES_ID {
   IPHONE_SE = 'iPhone SE',
   IPHONE_8_PLUS = 'iPhone 8 Plus',
   IPHONE_8 = 'iPhone 8',
-  IPHONE_7_PLUS = 'iPhone 7 Plus',
-  IPHONE_7 = 'iPhone 7',
 }
 
 export enum MEMORY_ID {

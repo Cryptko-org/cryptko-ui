@@ -1,27 +1,43 @@
-# CryptoJabkoUi
+# Cryptko
+## Головна сторінка
+![img.png](img.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+### Головна сторінка (товари)
+![img_1.png](img_1.png)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Головна сторінка (сортування)
+Є 5 видів сортування:
+- Не сортувати
+- Вища ціна спочатку
+- Нижча ціна спочатку
+- Вища оцінка спочатку
+- Нижча оцінка спочатку
 
-## Code scaffolding
+![img_2.png](img_2.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Головна сторінка (фільтрація)
+Є 3 типи фільтрації
+- Модель
+- Пам'ять
+- Стан
 
-## Build
+![img_3.png](img_3.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Продукт
+![img_4.png](img_4.png)
 
-## Running unit tests
+### Продукт (замовлення)
+Для замовлення продукту потрібно заповнити форму з 4 полями:
+- П.І.Б.
+- Номер телефону
+- Населений пункт
+- Відділення
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![img_5.png](img_5.png)
 
-## Running end-to-end tests
+Дані про населені пункту та відділення підтягуються автоматично за допомогою NovaPoshta API 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
