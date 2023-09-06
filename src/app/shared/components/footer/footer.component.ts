@@ -9,7 +9,7 @@ export class FooterComponent {
   public socials = [
     {
       name: 'Telegram',
-      link: 'https://t.me/yasno_cl0wn',
+      link: 'https://t.me/d0nnle',
       iconClass: 'icon-telegram',
     },
   ];
