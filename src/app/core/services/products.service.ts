@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Observable, Subscription } from 'rxjs';
 import {
   FilterData,
   Filters,
@@ -19,6 +19,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class ProductsService {
+  private readonly PRODUCTS_POOLING_INTERVAL: number = 1000 * 60 * 2; // 2 minutes
+  private productsPoolingInterval;
   public activeProductPageData: Product;
   public products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   public sort$: BehaviorSubject<SortOption[]> = new BehaviorSubject<SortOption[]>([]);
@@ -38,28 +40,28 @@ export class ProductsService {
   ) {
     this.initFilters();
     this.initSorts();
+    this.startProductsPooling();
+  }
+
+  private startProductsPooling() {
     this.updateProducts();
 
-    const ws = new WebSocket('ws://localhost:10001/', 'protocolOne');
+    this.productsPoolingInterval = interval(this.PRODUCTS_POOLING_INTERVAL).subscribe({
+      next: () => {
+        this.updateProducts();
 
-    ws.onopen = (data) => {
-      console.log('WebSocket opened successfully! Data:', data);
-    };
-
-    ws.onmessage = (event) => {
-      if (JSON.parse(event.data) === 'UPDATE_PRODUCTS') {
         if (this.router.url.includes('product')) {
           this.getProductById(this.activeProductPageData.id).subscribe({
             next: (response: Response<ProductResponse>) => {
               this.activeProductPageData = response.data.product;
             },
           });
-        } else {
-          this.updateProducts();
         }
-        console.log('UPDATE_PRODUCTS');
       }
-    };
+    })
+  }
+  private stopProductsPooling() {
+    this.productsPoolingInterval?.unsubscribe()
   }
 
   public setFilter(key: PRODUCT_FILTERS, filters: FilterData[]): Subscription {

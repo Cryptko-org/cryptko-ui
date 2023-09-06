@@ -2,7 +2,7 @@ import { Environment } from '../app/core/interfaces';
 
 export const environment: Environment = {
   production: true,
-  apiUrl: `https://flexfuel.onrender.com/api`,
+  apiUrl: `https://cryptko.onrender.com/api`,
   novaposhtaUrl: 'https://api.novaposhta.ua/v2.0/json/',
   blockExplorerUrls: ['https://bscscan.com/'],
   chainId: '0x38',
